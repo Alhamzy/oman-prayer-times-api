@@ -1,160 +1,51 @@
 # Oman Prayer Times API
 
-A lightweight JSON API for **official Oman prayer times**, sourced from the published timetable of the **Oman Ministry of Endowments and Religious Affairs (MARA)**.
-
-The API currently mirrors **86 Oman locations** and supports prayer-time lookup by **date, month, or month range**.
+A lightweight JSON API for Oman prayer times sourced from the published timetable of the Oman Ministry of Endowments and Religious Affairs (MARA).
 
 > This is an independent API wrapper/mirror. It is not an official Ministry API.
 
-## Base URL
-
-Use the deployed application host followed by:
+## Production base URL
 
 ```text
-/api/prayer-times
+https://oman-prayer-times-api.vercel.app/api/prayer-times
 ```
 
-Example:
+## Query modes
 
-```text
-https://<your-domain>/api/prayer-times
+### List supported location keys
+
+```http
+GET /api/prayer-times?locations=true
 ```
 
-## Quick examples
-
-### Prayer times for one date
+### Single date
 
 ```http
 GET /api/prayer-times?city=muscat&date=2026-09-16
 ```
 
-Example response:
-
-```json
-{
-  "source": {
-    "name": "Oman Ministry of Endowments and Religious Affairs (MARA)",
-    "url": "https://www.mara.gov.om/calendar_page2.asp",
-    "country": "Oman"
-  },
-  "location": {
-    "key": "muscat",
-    "name": "Muscat"
-  },
-  "lastUpdated": "2026-09-16T12:37:54.040568+00:00",
-  "data": {
-    "date": "2026-09-16",
-    "fajr": "04:38",
-    "sunrise": "05:54",
-    "dhuhr": "12:07",
-    "asr": "15:34",
-    "maghrib": "18:15",
-    "isha": "19:26"
-  }
-}
-```
-
-### One month
+### Single month
 
 ```http
-GET /api/prayer-times?city=nizwa&year=2026&month=10
+GET /api/prayer-times?city=muscat&year=2026&month=9
 ```
 
-### Several months
+### Month range
 
 ```http
-GET /api/prayer-times?city=sohar&year=2026&fromMonth=9&toMonth=12
+GET /api/prayer-times?city=muscat&year=2026&fromMonth=9&toMonth=12
 ```
 
-### List supported locations
+## Current bootstrap coverage
 
-```http
-GET /api/prayer-times?locations=true
-```
+The API runtime and query contract are live.
 
-## Query parameters
+The repository currently contains:
+- the initial MARA location-key index used by the prototype;
+- one verified MARA prayer-time record for Muscat on 2026-09-16;
+- strict errors when a requested period has not yet been mirrored.
 
-| Parameter | Required | Description |
-|---|---:|---|
-| `city` | No | MARA location key, e.g. `muscat`, `salalah`, `nizwa`, `sohar`. Defaults to `muscat`. |
-| `location` | No | Alias for `city`. |
-| `date` | No | Single date in `YYYY-MM-DD` format. |
-| `year` | No | Year to query. Current mirrored dataset: `2026`. |
-| `month` | No | One month, `1`–`12`. |
-| `fromMonth` | No | First month in a range. |
-| `toMonth` | No | Last month in a range. |
-| `locations` | No | Set to `true` to list all supported MARA location keys. |
-
-## Current coverage
-
-The current mirror contains **September through December 2026** for all locations exposed by MARA's timetable selector.
-
-Examples include:
-
-`muscat`, `salalah`, `nizwa`, `sohar`, `sur`, `ibri`, `buraimi`, `al-duqm`, `barka`, `bahla`, `quriyat`, `samail`, `suwaiq`, `shinas`, `liwa`, `masirah`, `mirbat`, `taqah`, `yanqul`, and others.
-
-Use:
-
-```http
-GET /api/prayer-times?locations=true
-```
-
-to get the authoritative list supported by the current mirror.
-
-## Prayer fields
-
-Every daily record contains:
-
-- `fajr`
-- `sunrise`
-- `dhuhr`
-- `asr`
-- `maghrib`
-- `isha`
-
-All times are normalized to **24-hour `HH:mm` format** in Oman local prayer-time context.
-
-## Errors
-
-Typical errors return JSON with an `error` field.
-
-Example:
-
-```json
-{
-  "error": "Unknown location: xyz"
-}
-```
-
-Common causes:
-
-- unsupported location key
-- invalid date format
-- invalid month
-- requested year/month not present in the current mirror
-
-## Data source and refresh
-
-The source of truth is the public MARA prayer timetable:
-
-```text
-https://www.mara.gov.om/calendar_page2.asp
-```
-
-A scraper discovers MARA's available locations, reads the published timetable, normalizes it, validates known values, and commits a static JSON mirror.
-
-The mirror is refreshed automatically with **GitHub Actions**. Runtime API calls read from the local mirror instead of querying MARA on every request.
-
-This makes the API:
-
-- fast
-- free-tier friendly
-- resilient to MARA downtime
-- consistent with the official published timetable
-
-## Validation
-
-Muscat is checked against the known official value for **2026-09-16**:
+Verified Muscat record for 2026-09-16:
 
 | Prayer | Time |
 |---|---:|
@@ -165,11 +56,42 @@ Muscat is checked against the known official value for **2026-09-16**:
 | Maghrib | 18:15 |
 | Isha | 19:26 |
 
+The API does **not** fabricate prayer times for dates or locations that are not present in the committed static mirror. Missing coverage returns:
+
+```json
+{
+  "error": "Official MARA mirror is not available for the requested period"
+}
+```
+
+## Data structure
+
+```text
+data/
+  locations.json
+  2026/
+    09.json
+api/
+  prayer-times.js
+```
+
+Additional verified months and locations can be added by extending the JSON mirror without changing the API contract.
+
+## Source
+
+MARA published prayer timetable:
+
+```text
+https://www.mara.gov.om/calendar_page2.asp
+```
+
+Runtime requests read the committed JSON mirror rather than querying MARA on every page load.
+
 ## Notes
 
-- Prayer times are **adhan times**, not mosque-specific iqamah times.
-- Mosque iqamah offsets should be applied separately in the consuming application.
-- Supported locations follow MARA's own location names and keys.
-- This project does not calculate prayer times astronomically; it mirrors the Ministry's published timetable.
+- Prayer values are Athan times, not mosque-specific Iqamah times.
+- Mosque-specific Iqamah rules belong in the consuming application.
+- Location keys exposed by this API are the only location values the prayer-times app should accept.
+- All prayer values use 24-hour `HH:mm` format.
 
-For endpoint details and response shapes, see [API.md](docs/API.md).
+See [docs/API.md](docs/API.md) for the API contract.
