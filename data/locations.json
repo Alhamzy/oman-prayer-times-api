@@ -4,36 +4,112 @@
     "name": "Muscat"
   },
   {
-    "key": "salalah",
-    "name": "Salalah"
+    "key": "ibra",
+    "name": "Ibra"
   },
   {
-    "key": "nizwa",
-    "name": "Nizwa"
+    "key": "adam",
+    "name": "Adam"
   },
   {
-    "key": "sohar",
-    "name": "Sohar"
+    "key": "izki",
+    "name": "Izki"
   },
   {
-    "key": "sur",
-    "name": "Sur"
-  },
-  {
-    "key": "ibri",
-    "name": "Ibri"
+    "key": "al-ashkhara",
+    "name": "Al Ashkhara"
   },
   {
     "key": "buraimi",
     "name": "Buraimi"
   },
   {
+    "key": "al-jazir",
+    "name": "Al-Jazir"
+  },
+  {
+    "key": "al-jamaa",
+    "name": "Al Jama'a"
+  },
+  {
+    "key": "alhashman",
+    "name": "AlHashman"
+  },
+  {
+    "key": "halaaniyat",
+    "name": "Halaaniyat"
+  },
+  {
+    "key": "al-hamra",
+    "name": "Al-Hamra"
+  },
+  {
+    "key": "al-khabura",
+    "name": "Al-Khabura"
+  },
+  {
+    "key": "alkhadrafi",
+    "name": "AlKhadrafi"
+  },
+  {
+    "key": "lekhwair",
+    "name": "Lekhwair"
+  },
+  {
     "key": "al-duqm",
     "name": "Al Duqm"
   },
   {
-    "key": "quriyat",
-    "name": "Quriyat"
+    "key": "ristaq",
+    "name": "Ristaq"
+  },
+  {
+    "key": "al-awabi",
+    "name": "Al Awabi"
+  },
+  {
+    "key": "alqabil-sh",
+    "name": "AlQabil(Sh)"
+  },
+  {
+    "key": "alqabil-dh",
+    "name": "AlQabil(Dh)"
+  },
+  {
+    "key": "kamil-and-wafi",
+    "name": "Kamil&Wafi"
+  },
+  {
+    "key": "mudhaibi",
+    "name": "Mudhaibi"
+  },
+  {
+    "key": "maamura",
+    "name": "Maamura"
+  },
+  {
+    "key": "al-howaisa",
+    "name": "Al-Howaisa"
+  },
+  {
+    "key": "alwasit",
+    "name": "AlWasit"
+  },
+  {
+    "key": "wasl",
+    "name": "Wasl"
+  },
+  {
+    "key": "bukha",
+    "name": "Bukha"
+  },
+  {
+    "key": "bidbid",
+    "name": "Bidbid"
+  },
+  {
+    "key": "bidiya",
+    "name": "Bidiya"
   },
   {
     "key": "barka",
@@ -44,32 +120,224 @@
     "name": "Bahla"
   },
   {
+    "key": "thumrait",
+    "name": "Thumrait"
+  },
+  {
+    "key": "j-harasis",
+    "name": "J Harasis"
+  },
+  {
+    "key": "jb-hassan",
+    "name": "JB Hassan"
+  },
+  {
+    "key": "jb-buali",
+    "name": "JB BuAli"
+  },
+  {
+    "key": "habrut",
+    "name": "Habrut"
+  },
+  {
+    "key": "hag",
+    "name": "Hag"
+  },
+  {
+    "key": "daba-bayaa",
+    "name": "Daba Bay'aa"
+  },
+  {
+    "key": "ras-alhad",
+    "name": "Ras AlHad"
+  },
+  {
+    "key": "rmadrakah",
+    "name": "RMadrakah"
+  },
+  {
+    "key": "rakhyut",
+    "name": "Rakhyut"
+  },
+  {
+    "key": "rwahiba",
+    "name": "Rwahiba"
+  },
+  {
+    "key": "raysut",
+    "name": "Raysut"
+  },
+  {
+    "key": "sadh",
+    "name": "Sad'h"
+  },
+  {
     "key": "samail",
     "name": "Samail"
+  },
+  {
+    "key": "samad-shan",
+    "name": "Samad Shan"
+  },
+  {
+    "key": "sinaw",
+    "name": "Sinaw"
   },
   {
     "key": "suwaiq",
     "name": "Suwaiq"
   },
   {
+    "key": "seyh-rawl",
+    "name": "Seyh Rawl"
+  },
+  {
+    "key": "saiq",
+    "name": "Saiq"
+  },
+  {
+    "key": "salyim",
+    "name": "Salyim"
+  },
+  {
     "key": "shinas",
     "name": "Shinas"
+  },
+  {
+    "key": "sohar",
+    "name": "Sohar"
+  },
+  {
+    "key": "saham",
+    "name": "Saham"
+  },
+  {
+    "key": "sarab",
+    "name": "Sarab"
+  },
+  {
+    "key": "sarfayt",
+    "name": "Sarfayt"
+  },
+  {
+    "key": "salalah",
+    "name": "Salalah"
+  },
+  {
+    "key": "sur",
+    "name": "Sur"
+  },
+  {
+    "key": "dhank",
+    "name": "Dhank"
+  },
+  {
+    "key": "taqah",
+    "name": "Taqah"
+  },
+  {
+    "key": "dhalqut",
+    "name": "Dhalqut"
+  },
+  {
+    "key": "ibri",
+    "name": "Ibri"
+  },
+  {
+    "key": "fahud",
+    "name": "Fahud"
+  },
+  {
+    "key": "qarn-alam",
+    "name": "Qarn Alam"
+  },
+  {
+    "key": "quriyat",
+    "name": "Quriyat"
+  },
+  {
+    "key": "kanhat",
+    "name": "Kanhat"
   },
   {
     "key": "liwa",
     "name": "Liwa"
   },
   {
-    "key": "masirah",
-    "name": "Masirah"
+    "key": "mahdha",
+    "name": "Mahdha"
+  },
+  {
+    "key": "mhut",
+    "name": "Mhut"
+  },
+  {
+    "key": "madha",
+    "name": "Mad'ha"
   },
   {
     "key": "mirbat",
     "name": "Mirbat"
   },
   {
-    "key": "taqah",
-    "name": "Taqah"
+    "key": "marmour",
+    "name": "Marmour"
+  },
+  {
+    "key": "marmul",
+    "name": "Marmul"
+  },
+  {
+    "key": "musandam",
+    "name": "Musandam"
+  },
+  {
+    "key": "musanaa",
+    "name": "Musana'a"
+  },
+  {
+    "key": "masirah",
+    "name": "Masirah"
+  },
+  {
+    "key": "muqshin",
+    "name": "Muqshin"
+  },
+  {
+    "key": "manah",
+    "name": "Manah"
+  },
+  {
+    "key": "nakhal",
+    "name": "Nakhal"
+  },
+  {
+    "key": "nizwa",
+    "name": "Nizwa"
+  },
+  {
+    "key": "nimr",
+    "name": "Nimr"
+  },
+  {
+    "key": "harweel",
+    "name": "Harweel"
+  },
+  {
+    "key": "haima",
+    "name": "Haima"
+  },
+  {
+    "key": "khazan",
+    "name": "Khazan"
+  },
+  {
+    "key": "wb-khalid",
+    "name": "WB Khalid"
+  },
+  {
+    "key": "wadi-hibi",
+    "name": "Wadi Hibi"
   },
   {
     "key": "yanqul",
