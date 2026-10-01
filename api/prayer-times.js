@@ -9,9 +9,17 @@ const SOURCE = {
 
 const ROOT = process.cwd();
 const LOCATIONS_PATH = path.join(ROOT, "data", "locations.json");
+const METADATA_PATH = path.join(ROOT, "data", "metadata.json");
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function mirrorMetadata() {
+  if (!fs.existsSync(METADATA_PATH)) {
+    return { lastUpdated: null, coverageThrough: null };
+  }
+  return readJson(METADATA_PATH);
 }
 
 function send(res, status, body) {
@@ -43,6 +51,14 @@ function locationByKey(locations, key) {
   return locations.find((x) => x.key === key) || null;
 }
 
+function responseMeta() {
+  const meta = mirrorMetadata();
+  return {
+    lastUpdated: meta.lastUpdated || null,
+    coverageThrough: meta.coverageThrough || null,
+  };
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
@@ -54,7 +70,7 @@ module.exports = async function handler(req, res) {
   if (String(req.query.locations || "").toLowerCase() === "true") {
     return send(res, 200, {
       source: SOURCE,
-      lastUpdated: "2026-09-21T00:00:00Z",
+      ...responseMeta(),
       locations,
     });
   }
@@ -82,7 +98,7 @@ module.exports = async function handler(req, res) {
     return send(res, 200, {
       source: SOURCE,
       location,
-      lastUpdated: "2026-09-21T00:00:00Z",
+      ...responseMeta(),
       data: record,
     });
   }
@@ -104,7 +120,7 @@ module.exports = async function handler(req, res) {
       location,
       year,
       month,
-      lastUpdated: "2026-09-21T00:00:00Z",
+      ...responseMeta(),
       data: mirror[key],
     });
   }
@@ -131,7 +147,7 @@ module.exports = async function handler(req, res) {
       year,
       fromMonth,
       toMonth,
-      lastUpdated: "2026-09-21T00:00:00Z",
+      ...responseMeta(),
       months,
     });
   }
