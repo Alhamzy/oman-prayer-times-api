@@ -1,0 +1,35 @@
+name: Populate MARA Q4 2026
+
+on:
+  push:
+    branches:
+      - populate-2026-q4
+    paths:
+      - "scripts/sync_mara_q4.py"
+      - ".github/workflows/populate-mara-q4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  populate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: populate-2026-q4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - name: Fetch and validate official MARA data
+        run: python scripts/sync_mara_q4.py
+      - name: Commit generated mirror
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/2026/10.json data/2026/11.json data/2026/12.json data/metadata.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Populate official MARA prayer times through 2026"
+          git push origin HEAD:populate-2026-q4
